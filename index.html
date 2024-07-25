@@ -59,11 +59,18 @@
         <input id="importCharacter" type="file" value="Import" />
         <a id="dLoad" download="character.json" type="text/json"></a>
     </form>
+    <p class="m-0 color-red">*Your edits are saved automatically as changes are made.</p>
+    <p class="m-0 color-red">*Data is saved to your browser's storage. Please "Export" it for safekeeping.</p>
 </body>
 <link rel="stylesheet" href="./styles.css">
 </html>
 <script>
     document.getElementById("importCharacter").addEventListener("change", importCharacter, false);
+
+    document.getElementById("character-form").addEventListener("change", (event) => {
+        console.log("CHANGED");
+        saveToLocalStorage();
+    });
 
     function saveToLocalStorage()
     {

@@ -21,6 +21,10 @@
     list-style-type: none;
 }
 
+.color-red {
+    color: red;
+}
+
 /***** ALIGNMENT *****/
 
 .justify-content-center {
