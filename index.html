@@ -3,10 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Table</title>
+    <title>Character Sheet</title>
 </head>
-<body>
-    <h1>Open Table</h1>
-    <a href="">Character Pages</a>
+<body class="display-flex flex-col align-items-center">
+    <form id="character-form" class="max-width-500 width-100p">
+        <div class="border-solid border-black border-weight-1 p-5 max-width-500 width-100p m-5 border-box">
+            <input id="character_name" type="text" name="character_name" class="min-width-100p border-box all-unset" placeholder="Character name">
+        </div>
+        <div class="border-solid border-black border-weight-1 p-5 max-width-500 width-100p m-5 border-box">
+            <p class="m-0">Ability Scores</p>
+            <br>
+            <p class="m-0">HP: <input type="text" id="current_hit_points" name="current_hit_points" class="max-width-20 all-unset" placeholder="HP">/ <input type="text" id="max_hit_points" name="max_hit_points" class="max-width-20 all-unset" placeholder="HP"></p>
+            <p class="m-0">AC: <input type="text" id="armor_class" name="armor_class" class="max-width-20 all-unset" placeholder="HP"></p>
+            <br>
+
+            <p class="m-0">STR: <input type="text" id="ability_str" name="ability_str" class="max-width-20 all-unset" placeholder="0"> (+<input type="text" id="mod_str" name="mod_str" class="max-width-20 all-unset" placeholder="0">)</p>
+            <p class="m-0">DEX: <input type="text" id="ability_dex" name="ability_dex" class="max-width-20 all-unset" placeholder="0"> (+<input type="text" id="mod_dex" name="mod_dex" class="max-width-20 all-unset" placeholder="0">)</p>
+            <p class="m-0">CON: <input type="text" id="ability_con" name="ability_con" class="max-width-20 all-unset" placeholder="0"> (+<input type="text" id="mod_con" name="mod_con" class="max-width-20 all-unset" placeholder="0">)</p>
+            <p class="m-0">INT: <input type="text" id="ability_int" name="ability_int" class="max-width-20 all-unset" placeholder="0"> (+<input type="text" id="mod_int" name="mod_int" class="max-width-20 all-unset" placeholder="0">)</p>
+            <p class="m-0">WIS: <input type="text" id="ability_wis" name="ability_wis" class="max-width-20 all-unset" placeholder="0"> (+<input type="text" id="mod_wis" name="mod_wis" class="max-width-20 all-unset" placeholder="0">)</p>
+            <p class="m-0">CHA: <input type="text" id="ability_cha" name="ability_cha" class="max-width-20 all-unset" placeholder="0"> (+<input type="text" id="mod_cha" name="mod_cha" class="max-width-20 all-unset" placeholder="0">)</p>
+            
+            <br>
+            <p class="m-0">Item Slots (10 + CON): <input type="text" id="item_slots" name="item_slots" class="max-width-20 all-unset" placeholder="0"></p>
+        </div>
+
+        <div class="border-solid border-black border-weight-1 p-5 max-width-500 width-100p m-5 border-box">
+            <p class="m-0">Inventory</p>
+            <br>
+            <textarea id="inventory" name="inventory" class="max-width-500 width-100p min-height-200 border-box">===== BACKPACK =====&#13&#13&#13&#13===== BLUE BARREL TAVERN & INN =====&#13&#13</textarea>
+        </div>
+
+        <div class="border-solid border-black border-weight-1 p-5 max-width-500 width-100p m-5 border-box">
+            <p class="m-0">Character Description</p>
+            <br>
+            <textarea id="character-description" name="character_description" class="max-width-500 width-100p min-height-100 border-box"></textarea>
+        </div>
+
+        <div class="border-solid border-black border-weight-1 p-5 max-width-500 width-100p m-5 border-box">
+            <p class="m-0">Notes</p>
+            <br>
+            <textarea id="notes" name="notes" class="max-width-500 width-100p min-height-200 border-box"></textarea>
+        </div>
+
+        <div class="border-solid border-black border-weight-1 p-5 max-width-500 width-100p m-5 border-box">
+            <p class="m-0">Journal</p>
+            <br>
+            <textarea id="journal" name="journal" class="max-width-500 width-100p min-height-200 border-box"></textarea>
+        </div>
+
+        <button onclick="saveToLocalStorage()">Save</button>
+        <button onclick="loadCharacter()">Load</button>
+        <button onclick="exportCharacter()">Export</button>
+        <label for="importCharacter">Import:</label>
+        <input id="importCharacter" type="file" value="Import" />
+        <a id="dLoad" download="character.json" type="text/json"></a>
+    </form>
 </body>
+<link rel="stylesheet" href="./styles.css">
 </html>
+<script>
+    document.getElementById("importCharacter").addEventListener("change", importCharacter, false);
+
+    function saveToLocalStorage()
+    {
+        event.preventDefault();
+
+        let props = {};
+        for (let element of document.forms[0].elements)
+        {
+            if (element.type !== "submit" && element.type !== "file")
+            {
+                props[element.name] = element.value;
+            }
+        }
+
+        const json = JSON.stringify(props);
+
+        localStorage.setItem('characterData', json);
+    }
+
+    function exportCharacter()
+    {
+        event.preventDefault();
+
+        var data = new Blob([localStorage["characterData"]]);
+        var dLoad = document.getElementById('dLoad');
+        dLoad.href = URL.createObjectURL(data);
+        let characterName = document.getElementById("character_name").value;
+        dLoad.download = `${characterName !== "" ? characterName.toLowerCase().split(' ').join('_') : "character"}.json`;
+        dLoad.click();
+        dLoad.download = "character.json";
+    }
+
+    function importCharacter(event)
+    {
+        let file = event.target.files[0];
+
+        let reader = new FileReader();
+        reader.onload = function(event) {
+            let characterData = event.target.result;
+            localStorage.setItem('characterData', characterData);
+            loadCharacter();
+        }
+        reader.readAsText(file);
+    }
+
+    function loadCharacter()
+    {
+        event.preventDefault();
+
+        const form = document.getElementById("character-form");
+        const characterData = JSON.parse(localStorage["characterData"]);
+        Array.from(form.elements).forEach(element => {
+            if ((element.nodeName === "INPUT" || element.nodeName === "TEXTAREA") && element.type !== "file")
+            {
+                element.value = characterData[element.name];
+            }
+        })
+    }
+</script>

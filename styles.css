@@ -1,0 +1,120 @@
+:root {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+/***** OTHER *****/
+
+#addItemBtn:hover {
+    cursor: pointer;
+}
+
+.all-unset {
+    all: unset;
+}
+
+.whitespace-pre {
+    white-space: pre;
+}
+
+.list-style-type-none {
+    list-style-type: none;
+}
+
+/***** ALIGNMENT *****/
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+/***** FLEX *****/
+
+.display-flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+/***** HEIGHT *****/
+
+.min-height-200 {
+    min-height: 200px;
+}
+
+.min-height-100 {
+    min-height: 100px;
+}
+
+/***** WIDTH *****/
+
+.width-100p {
+    width: 100%;
+}
+
+.max-width-20 {
+    max-width: 20px;
+}
+
+.max-width-500 {
+    max-width: 500px;
+}
+
+.min-width-100p {
+    min-width: 100%;
+}
+
+/***** MARGIN *****/
+
+.m-0 {
+    margin: 0px;
+}
+
+.m-5 {
+    margin: 5px;
+}
+
+.mb-15 {
+    margin: 0 0 15px 0;
+}
+
+/***** PADDING *****/
+
+.p-0 {
+    padding: 0;
+}
+
+.p-1 {
+    padding: 1px;
+}
+
+.p-5 {
+    padding: 5px;
+}
+
+/***** BORDERS *****/
+
+.border-solid {
+    border-style: solid;
+}
+
+.border-black {
+    border-color: black;
+}
+
+.border-weight-1 {
+    border-width: 2px;
+}
+
+.border-weight-2 {
+    border-width: 2px;
+}
+
+.border-box {
+    box-sizing: border-box;
+}
