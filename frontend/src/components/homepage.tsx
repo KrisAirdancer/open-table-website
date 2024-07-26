@@ -2,7 +2,7 @@ export default function Homepage()
 {
     return (
         <>
-            <h1>Open Table</h1>
+            <h1 className="text-3xl font-bold text-red-600">Open Table</h1>
         </>
     )
 }
