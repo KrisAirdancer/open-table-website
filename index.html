@@ -99,6 +99,8 @@
     {
         event.preventDefault();
 
+        saveToLocalStorage();
+
         var data = new Blob([localStorage["characterData"]]);
         var dLoad = document.getElementById('dLoad');
         dLoad.href = URL.createObjectURL(data);
