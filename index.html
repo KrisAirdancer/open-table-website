@@ -72,6 +72,11 @@
         saveToLocalStorage();
     });
 
+    if (localStorage.getItem("characterData"))
+    {
+        loadCharacter();
+    }
+
     function saveToLocalStorage()
     {
         event.preventDefault();
@@ -116,12 +121,15 @@
         reader.readAsText(file);
     }
 
-    function loadCharacter()
+    function loadCharacter(event)
     {
-        event.preventDefault();
+        if (event) { event.preventDefault(); }
 
+        let characterData = localStorage.getItem("characterData");
+        if (characterData === null || characterData === undefined) { return; }
+
+        characterData = JSON.parse(characterData);
         const form = document.getElementById("character-form");
-        const characterData = JSON.parse(localStorage["characterData"]);
         Array.from(form.elements).forEach(element => {
             if ((element.nodeName === "INPUT" || element.nodeName === "TEXTAREA") && element.type !== "file")
             {
