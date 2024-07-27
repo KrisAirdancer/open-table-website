@@ -12,7 +12,7 @@ export default function Characters()
                         <Link to="/characters/fuku" className="hover:text-red-600">Fuku</Link>
                     </li>
                     <li>
-                        <Link to="/characters/fuku" className="hover:text-red-600">Phineas Filth</Link>
+                        <Link to="/characters/phineas-filth" className="hover:text-red-600">Phineas Filth</Link>
                     </li>
                 </ul>
             </main>
