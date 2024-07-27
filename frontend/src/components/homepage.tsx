@@ -1,8 +1,10 @@
+import SiteHeader from "./page_elements/SiteHeader"
+
 export default function Homepage()
 {
     return (
         <>
-            <h1 className="text-3xl font-bold text-red-600">Open Table</h1>
+            <SiteHeader pageTitle="Open Table" />
         </>
     )
 }
