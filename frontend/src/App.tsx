@@ -5,6 +5,7 @@ import CharacterSheet from './components/CharacterSheet'
 import Characters from './components/Characters'
 import Fuku from './components/character_pages/Fuku'
 import PhineasFilth from './components/character_pages/PhineasFilth'
+import PlayerJournal from './components/PlayerJournal'
 
 
 function App()
@@ -14,6 +15,7 @@ function App()
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/character-sheet" element={<CharacterSheet />} />
+        <Route path="/journal" element={<PlayerJournal />} />
         <Route path="/characters">
         <Route index element={<Characters />} />
           <Route path="fuku" element={<Fuku />} />

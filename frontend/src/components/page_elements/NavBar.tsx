@@ -17,6 +17,7 @@ export default function NavBar()
             <NavBarLink target="/" text="Home" />
             <NavBarLink target="/character-sheet" text="Character Sheet" />
             <NavBarLink target="/characters" text="Characters" />
+            <NavBarLink target="/journal" text="Player Journal" />
         </nav>
     )
 }
