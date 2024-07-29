@@ -32,7 +32,10 @@ export default {
 ## Dev loop
 
 After you have changed directory to `/frontend` you can run the following commands to start working on the project.
+
 ```bash
 npm install
 npm run dev
 ```
+
+After this you will see a localhost link that you can click and see a live preview of the website. As you make changes to the project the website will be updated live.
