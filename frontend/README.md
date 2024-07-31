@@ -28,3 +28,14 @@ export default {
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+## Dev loop
+
+After you have changed directory to `/frontend` you can run the following commands to start working on the project.
+
+```bash
+npm install
+npm run dev
+```
+
+After this you will see a localhost link that you can click and see a live preview of the website. As you make changes to the project the website will be updated live.
